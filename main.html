@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family:"digital-7";
+            src: url("digital-7.ttf") format("truetype");
+        }
+        *{margin: 0;
+        padding: 0;
+        font-family: digital-7;
+        }
+        .display{
+            text-align: end;
+            height: 5vh;
+            width: 33vh;
+            font-family: digital-7;
+            font-size: 7vh;
+            margin: 4px 0;
+            background-color: rgb(255, 255, 255);
+        }
+        .square{
+            margin: 2px 0px;
+            height: 8vh;
+            width: 8vh;
+            font-size: 2rem;
+        }
+        .zero{
+            margin: 2px 0px;
+            height: 8vh;
+            width: 16.5vh;    
+        }
+        .r1{
+            width: 25vw;
+            display: flex;
+            justify-content: space-around;
+        }
+        .r2, .r3,.r4,.r5{
+            width: 25vw;
+            display: flex;
+            justify-content: space-around;
+            
+        }
+        .equal{
+            height:16vh;
+            
+        }
+        .plus-btn,.equal-btn{
+            display: flex;
+        }
+        .big-height{
+            height: 16.2vh;
+            margin: 4px;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="content">
+        <div class="display-div">
+            <input type="text" name="" id="" readonly class="display">
+        </div>
+        <div class="r-1">
+            <button class="square clear" data-func="+">
+                C
+            </button>
+            <button class="square button add" data-func="-">
+                -
+            </button>
+            
+            <button class="square button add" data-func="*">
+                *
+            </button>
+            <button class="square button add" data-func="/">
+                ÷
+            </button><br>
+            <div class="plus-btn">
+                <div class="middle-div">
+
+                    <button class="square button add" data-func="7" onclick="playAudio('click.mp3')">
+                        7
+                    </button>
+                    <button class="square button add" data-func="8">
+                        8
+                    </button>
+                    <button class="square button add" data-func="9">
+                        9
+                    </button><br>
+                    <button class="square button add" data-func="4">
+                        4
+                    </button>
+                    <button class="square button add" data-func="5">
+                        5
+                    </button>
+                    <button class="square button add" data-func="6">
+                        6
+                    </button>
+                </div>
+                <button class="big-height square button add" data-func="+">
+                    +
+                </button>
+            </div>
+            <!-- <br> -->
+            <div class="equal-btn">
+                <div class="equal-div">
+                    
+                    <button class="square button add" data-func="1">
+                        1
+                    </button>
+                    <button class="square button add" data-func="2">
+                        2
+                    </button>
+                    <button class="square button add" data-func="3">
+                        3
+                    </button><br>
+                    <button class="square button add zero" data-func="0">
+                        0
+                    </button>
+                    <button class="square button add" data-func=".">
+                        .
+                    </button>
+                </div>
+                <button class="big-height square equal big-height" data-func="+">
+                    =
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+<script>
+    let btns = document.querySelectorAll(".button");
+    let equal = document.querySelector(".equal");
+    let display = document.querySelector(".display")
+    let clear = document.querySelector(".clear")
+    let audio = new Audio("click.mp3")
+    btns.forEach(e=>{
+        e.addEventListener("click",()=>{
+            display.value += e.getAttribute("data-func");
+            // new Audio("click.mp3").play()
+        })
+    })
+
+
+    equal.addEventListener("click",()=>{        
+        let sol = eval(display.value)
+        console.log(sol);
+        if (display.value == "7006786167"){
+            display.value = "Umaid"
+        }else{
+            display.value = sol
+
+        }
+    })
+    clear.addEventListener("click",()=>{
+        str = display.value
+        console.log(str);
+        str = str.slice(0, -1);
+        display.value = str
+    })
+    function playAudio(audio){
+        new Audio(audio).play()
+    }
+</script>
+</html>
